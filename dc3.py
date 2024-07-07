@@ -1,8 +1,8 @@
 import sys
-import time
+import timeit
 import copy
 
-NUMBER_OF_LETTERS = 26
+NUMBER_OF_LETTERS = 2048
 
 
 def pretty_output(suffix_array, time_to_construct, input_string):
@@ -208,13 +208,13 @@ def radix_sort_for_numbers(arr):
 def counting_sort_tuples(arr, index):
     n = len(arr)
     output = [0] * n
-    count = [0] * 2048
+    count = [0] * NUMBER_OF_LETTERS
 
     for i in range(n):
         element = arr[i][index] if isinstance(arr[i], list) and index < len(arr[i]) else 0
         count[element] += 1
 
-    for i in range(1, 2048):
+    for i in range(1, NUMBER_OF_LETTERS):
         count[i] += count[i - 1]
 
     i = n - 1
@@ -229,8 +229,12 @@ def counting_sort_tuples(arr, index):
 
 
 if __name__ == "__main__":
-    input_string = sys.argv[1]
-
-    time_to_construct = time.time()
-    suffix_array = construct_suffix_array(input_string)
-    pretty_output(suffix_array, time.time() - time_to_construct, input_string)
+    # input_string = sys.argv[1]
+    input_strings = ["banana", "abracadabraabracadabraabracadabraabracadabraabracadabraabracadabraabracadabraabracadabraabracadabra",
+                     "aaaaaaaaaa", "mississippi", "racecar", "abracadabraabracadabraabracadabrabanana", "abcdeedcba",
+                     "atcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcg"
+                     ]
+    for input_string in input_strings:
+        time_to_construct = timeit.default_timer()
+        suffix_array = construct_suffix_array(input_string)
+        pretty_output(suffix_array, timeit.default_timer() - time_to_construct, input_string)

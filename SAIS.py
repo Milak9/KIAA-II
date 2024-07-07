@@ -1,4 +1,4 @@
-import time
+import timeit
 import sys
 from enum import Enum
 from copy import deepcopy
@@ -214,7 +214,12 @@ def place_lms_in_right_spot(input_string, end_positions, sa_based_on_converted_l
 
 
 if __name__ == "__main__":
-    input_string = sys.argv[1]
-    time_to_construct = time.time()
-    suffix_array = construct_suffix_array(input_string, ALPHABET_SIZE)
-    pretty_output(suffix_array, time.time() - time_to_construct, input_string)
+    # input_string = sys.argv[1]
+    input_strings = ["banana", "abracadabraabracadabraabracadabraabracadabraabracadabraabracadabraabracadabraabracadabraabracadabra",
+                     "aaaaaaaaaa", "mississippi", "racecar", "abracadabraabracadabraabracadabrabanana", "abcdeedcba",
+                     "atcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcg"
+                     ]
+    for input_string in input_strings:
+        time_to_construct = timeit.default_timer()
+        suffix_array = construct_suffix_array(input_string, ALPHABET_SIZE)
+        pretty_output(suffix_array, timeit.default_timer() - time_to_construct, input_string)
